@@ -2,7 +2,7 @@
 # rtrace Makefile
 #
 
-CXX=clang++
+CXX=g++
 CXXFLAGS=-g -std=c++11 -Wall -Wextra -pedantic -O3
 LDFLAGS=-g
 LDLIBS=
@@ -17,13 +17,13 @@ all: $(BUILD_DIR)/$(BINARY)
 
 $(BUILD_DIR)/$(BINARY): $(OBJS)
 	mkdir -p $(@D)
-	$(CXX) $(LDFLAGS) $^ -o $@
+	$(CXX) $(LDFLAGS) $^ -o $@ -fopenmp
 
 -include $(DEPS)
 
 $(BUILD_DIR)/%.o: %.cc
 	mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) -MMD -c $< -o $@
+	$(CXX) $(CXXFLAGS) -MMD -c $< -o $@ -fopenmp
 
 .PHONY: clean
 clean:

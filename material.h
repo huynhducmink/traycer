@@ -11,6 +11,7 @@
 #include "hit.h"
 #include "ray.h"
 #include "vec3.h"
+#include <memory>
 
 class Material {
     public:
