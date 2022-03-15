@@ -194,7 +194,9 @@ void writeImage() {
 			0.1, (origin-lookAt).norm());
 	ObjCollection world = createWorld();
 
-#pragma omp parallel for
+#pragma omp parallel 
+{
+#pragma omp for schedule(static,8) nowait
 	for (int y = ny-1; y >=0; --y) {
 		for (int x = 0; x < nx; ++x) {
 			Vec3 px(0.0, 0.0, 0.0);
@@ -209,13 +211,12 @@ void writeImage() {
 			px = Vec3(fmin(255.0, 255.00*sqrt(px[0])),
 					fmin(255.0, 255.00*sqrt(px[1])),
 					fmin(255.0, 255.00*sqrt(px[2])));
-			// std::cout << int(px[0]) << " " << int(px[1]) << " "
-			//           << int(px[2]) << "\n";
 			image[y][x][2]=(unsigned char)(px[0]);
 			image[y][x][1]=(unsigned char)(px[1]);
 			image[y][x][0]=(unsigned char)(px[2]);
 		}
 	}
+}
 	generateBitmapImage((unsigned char*) image, ny, nx, imageFileName);
 	printf("Image generated!!");
 }
