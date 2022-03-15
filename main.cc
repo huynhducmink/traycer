@@ -196,7 +196,7 @@ void writeImage() {
 
 #pragma omp parallel 
 {
-#pragma omp for schedule(static,8) nowait
+#pragma omp for schedule(dynamic) nowait
 	for (int y = ny-1; y >=0; --y) {
 		for (int x = 0; x < nx; ++x) {
 			Vec3 px(0.0, 0.0, 0.0);
