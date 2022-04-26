@@ -181,7 +181,7 @@ ObjCollection createWorld() {
 void writeImage() {
 	int nx = 1920; //width
 	int ny = 1080; //height
-	int ns = 100; //number of samples
+	int ns = 20; //number of samples
 
 	unsigned char image[ny][nx][BYTES_PER_PIXEL];
 	char* imageFileName = (char*) "bitmapImage.bmp";
@@ -196,7 +196,7 @@ void writeImage() {
 
 #pragma omp parallel 
 {
-#pragma omp for schedule(dynamic) nowait
+#pragma omp for schedule(dynamic)
 	for (int y = ny-1; y >=0; --y) {
 		for (int x = 0; x < nx; ++x) {
 			Vec3 px(0.0, 0.0, 0.0);

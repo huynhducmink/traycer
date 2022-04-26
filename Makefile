@@ -23,7 +23,7 @@ $(BUILD_DIR)/$(BINARY): $(OBJS)
 
 $(BUILD_DIR)/%.o: %.cc
 	mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) -MMD -c $< -o $@ -fopenmp
+	$(CXX) $(CXXFLAGS) -MMD -c $< -o $@ -fopenmp 
 
 .PHONY: clean
 clean:
